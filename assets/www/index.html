@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Geolocation</title>
+        <script type="text/javascript" charset="utf-8" src="cordova-2.3.0.js"></script>
+        <script type="text/javascript" charset="utf-8">
+        
+        function init() {
+        	document.addEventListener("deviceready", onDeviceReady, false);
+		}
+		
+   			 function onDeviceReady() {
+   			 	navigator.geolocation.getCurrentPosition(success, error, {timeout:30000, maximumAge:30000, enableHighAccuracy:true});
+   			 	//	watchID =  navigator.geolocation.watchPosition(success, error, {timeout:20000, maximumAge:30000, frequency:3000, enableHighAccuracy:true});
+          
+    		}
+
+    		function success(position) {
+				var element = document.getElementById('geolocation');
+
+              alert( 'Latitude: '          + position.coords.latitude          + '\n' +
+                  'Longitude: '         + position.coords.longitude         + '\n' +
+                  'Altitude: '          + position.coords.altitude          + '\n' +
+                  'Accuracy: '          + position.coords.accuracy          + '\n' +
+                  'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+                  'Heading: '           + position.coords.heading           + '\n' +
+                  'Speed: '             + position.coords.speed             + '\n' +
+                  'Timestamp: '         + position.timestamp                + '\n');
+                
+               element.innerHTML = 'Latitude: ' 			+ position.coords.latitude     			+ '<br />' +
+                					'Longitude: '           + position.coords.longitude             + '<br />' +
+                					'Altitude: '            + position.coords.altitude              + '<br />' +
+                					'Accuracy: '            + position.coords.accuracy              + '<br />' +
+                					'Altitude Accuracy: '   + position.coords.altitudeAccuracy      + '<br />' +
+                					'Heading: '             + position.coords.heading               + '<br />' +
+                					'Speed: '               + position.coords.speed                 + '<br />' +
+                					'Timestamp: '           + new Date(position.timestamp)          
+                					 + '<br />' + '<hr>' + element.innerHTML;
+				
+			}
+        	
+        	
+            function error(error) {
+                alert(error.message);
+            }
+            
+            </script>
+    </head>
+    <body onload = "init();">
+        <p id = "geolocation">Locating. Please wait............. </p>
+    </body>
+</html>
